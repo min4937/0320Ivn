@@ -228,6 +228,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: -1535844976432880830, guid: 3987ca7207cb10a43a7f7617378739e6, type: 3}
+  swordSprite: {fileID: 413149422, guid: 3cd8f73a9fea671449ccf27360d9c628, type: 3}
+  shieldSprite: {fileID: 2095584355, guid: 3cd8f73a9fea671449ccf27360d9c628, type: 3}
+  bowSprite: {fileID: 1814226232, guid: 3cd8f73a9fea671449ccf27360d9c628, type: 3}
+  bookSprite: {fileID: -1469112966, guid: 3cd8f73a9fea671449ccf27360d9c628, type: 3}
+  helmetSprite: {fileID: 1382388774, guid: 3cd8f73a9fea671449ccf27360d9c628, type: 3}
+  axeSprite: {fileID: 514480517, guid: 3cd8f73a9fea671449ccf27360d9c628, type: 3}
 --- !u!4 &63306815
 Transform:
   m_ObjectHideFlags: 0

@@ -34,9 +34,22 @@ public class UIInventory : MonoBehaviour
 
         for (int i = 0; i < GameManager.Instance.Player.Inventory.Count; i++)
         {
+            Debug.Log("½½·ÔÃß°¡");
+            Debug.Log($"Creating slot {i}");
+            Debug.Log($"slotPrefab: {slotPrefab}, slot: {slots}");
             UISlot slot = Instantiate(slotPrefab, slotParent);
-            slot.SetItem(GameManager.Instance.Player.Inventory[i]);
-            slots.Add(slot);
+            if (slot != null) // null Ã¼Å© Ãß°¡
+            {
+                if (i < GameManager.Instance.Player.Inventory.Count)
+                {
+                    slot.SetItem(GameManager.Instance.Player.Inventory[i]);
+                }
+                else
+                {
+                    slot.SetItem(null); // ºó ½½·Ô ¼³Á¤
+                }
+                slots.Add(slot);
+            }
         }
 
         inventorySizeText.text = $"{GameManager.Instance.Player.Inventory.Count} / 120";

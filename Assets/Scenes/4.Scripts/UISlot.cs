@@ -23,25 +23,26 @@ public class UISlot : MonoBehaviour
 
     public void RefreshUI()
     {
+        Debug.Log($"RefreshUI() called, item: {item}, icon: {icon}");
         if (item != null)
         {
             icon.sprite = item.Icon;
             icon.enabled = true;
-            // 장착 여부에 따른 UI 변경 (예시)
+            Debug.Log($"item.IsEquipped: {item.IsEquipped}");
             if (item.IsEquipped)
             {
                eImage.gameObject.SetActive(true);
             }
             else
             {
-                eImage.gameObject.SetActive(false);
+               eImage.gameObject.SetActive(false);
             }
         }
         else
         {
             icon.sprite = null;
-            icon.enabled = false;
-            
+            icon.enabled = true;
+            eImage.gameObject.SetActive(false);
         }
     }
 
