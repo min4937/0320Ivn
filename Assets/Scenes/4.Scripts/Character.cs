@@ -27,7 +27,7 @@ public class Character
         Critical = critical;
         EXP = exp;
         MaxEXP = maxExp;
-        Inventory = new List<Item>();
+        Inventory = new List<Item>(9);
     }
 
     public void AddItem(Item item)
