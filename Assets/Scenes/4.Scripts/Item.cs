@@ -2,26 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
+public class Item : ScriptableObject
 {
-    [SerializeField] private string name;
-    [SerializeField] private string description;
-    [SerializeField] private int atk;
-    [SerializeField] private int def;
-    [SerializeField] public Sprite Icon { get;  set; }
+    public string itemName;
+    public string itemDescription;
+    public int attackBonus;
+    public int defenseBonus;
+    public Sprite itemIcon;
     public bool IsEquipped { get; set; }
-
-    public string Name { get { return name; } }
-    public string Description { get { return description; } }
-    public int ATK { get { return atk; } }
-    public int DEF { get { return def; } }
-
-    public void SetData(string name, string description, int atk, int def, Sprite icon)
-    {
-        this.name = name;
-        this.description = description;
-        this.atk = atk;
-        this.def = def;
-        Icon = icon;
-    }
 }

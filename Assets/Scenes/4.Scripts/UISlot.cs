@@ -1,53 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UISlot : MonoBehaviour
+public class ItemSlot : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private Image icon;
-    private Item item;
-    public Button button;
+    public Image icon;
+
+    public Item item;
     public Image eImage;
+    public int slotIndex; // ΩΩ∑‘¿« ¿Œµ¶Ω∫
 
-    private void Start()
-    {
-        button.onClick.AddListener(OnSlotClicked);
-    }
-
-    public void SetItem(Item newItem)
+    public void AddItem(Item newItem)
     {
         item = newItem;
-        RefreshUI();
+        icon.sprite = item.itemIcon;
+        icon.enabled = true;
+
+        UpdateIconColor();
     }
 
-    public void RefreshUI()
+    public void ClearSlot()
     {
-        Debug.Log($"RefreshUI() called, item: {item}, icon: {icon}");
+        item = null;
+        icon.sprite = null;
+        icon.enabled = false;
+
+        UpdateIconColor();
+    }
+
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
         if (item != null)
         {
-            icon.sprite = item.Icon;
-            icon.enabled = true;
-            Debug.Log($"item.IsEquipped: {item.IsEquipped}");
-            if (item.IsEquipped)
-            {
-               eImage.gameObject.SetActive(true);
-            }
-            else
-            {
-               eImage.gameObject.SetActive(false);
-            }
+            Inventory.Instance.EquipUnequipItem(slotIndex);
+        }
+        UpdateIconColor();
+    }
+
+
+    public void UpdateIconColor()
+    {
+        if (item != null && item.IsEquipped)
+        {
+            eImage.gameObject.SetActive(true);
         }
         else
         {
-            icon.sprite = null;
-            icon.enabled = true;
             eImage.gameObject.SetActive(false);
         }
-    }
-
-    public void OnSlotClicked()
-    {
-        UIManager.Instance.UIInventory.SlotClick(item);
     }
 }

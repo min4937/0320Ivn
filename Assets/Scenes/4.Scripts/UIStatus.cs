@@ -26,10 +26,13 @@ public class UIStatus : MonoBehaviour
 
     public void SetCharacterInfo()
     {
-        ATKText.text = $"공격력: {GameManager.Instance.Player.ATK}";
-        DEFText.text = $"방어력: {GameManager.Instance.Player.DEF}";
-        HPText.text = $"체력: {GameManager.Instance.Player.HP}";
-        CriticalText.text = $"치명타: {GameManager.Instance.Player.Critical}";
+        var player = GameManager.Instance.Player;
+        Debug.Log("SetCharacterInfo Called!");
+        Debug.Log("ATK: " + player.ATK + ", DEF: " + player.DEF);
+        ATKText.text = $"공격력: {player.ATK}";
+        DEFText.text = $"방어력: {player.DEF}";
+        HPText.text = $"체력: {player.HP}";
+        CriticalText.text = $"치명타: {player.Critical}";
     }
 
     public void RefreshUI()

@@ -8,76 +8,52 @@ public class Character
     public string Name { get; private set; }
     public int Level { get; private set; }
     public int Gold { get; private set; }
-    public int HP { get; private set; }    
-    public int ATK { get; private set; }
-    public int DEF { get; private set; }
-    public int Critical { get; private set; } // 추가
-    public int EXP { get; private set; } // 추가
-    public int MaxEXP { get; private set; } // 추가
+    public int HP { get; set; } 
+    public int ATK { get; set; } 
+    public int DEF { get; set; } 
+    public int Critical { get; private set; }
+    public int EXP { get; set; } 
+    public int MaxEXP { get; private set; }
     public List<Item> Inventory { get; private set; }
+
 
     public Character(string name, int level, int gold, int hp, int atk, int def, int critical, int exp, int maxExp)
     {
         Name = name;
         Level = level;
         Gold = gold;
-        HP = hp;        
+        HP = hp;
         ATK = atk;
         DEF = def;
         Critical = critical;
         EXP = exp;
         MaxEXP = maxExp;
-        Inventory = new List<Item>(9);
-    }
-
-    public void AddItem(Item item)
-    {
-        Inventory.Add(item);
-    }
-
-    public void EquipItem(Item item)
-    {
-        if (item != null && !item.IsEquipped)
+        Inventory = new List<Item>(9); // 크기가 9인 리스트로 초기화
+        for (int i = 0; i < 9; i++)
         {
-            item.IsEquipped = true;
-            ATK += item.ATK;
-            DEF += item.DEF;
-            UIManager.Instance.UIStatus.RefreshUI();
-            UIManager.Instance.UIInventory.RefreshUI();
+            Inventory.Add(null); 
         }
     }
 
-    public void UnEquipItem(Item item)
-    {
-        if (item != null && item.IsEquipped)
-        {
-            item.IsEquipped = false;
-            ATK -= item.ATK;
-            DEF -= item.DEF;
-            UIManager.Instance.UIStatus.RefreshUI();
-            UIManager.Instance.UIInventory.RefreshUI();
-        }
-    }
-
-    public void GainEXP(int amount) // 추가
+    public void GainEXP(int amount)
     {
         EXP += amount;
         while (EXP >= MaxEXP)
         {
             LevelUp();
             EXP -= MaxEXP;
-            MaxEXP += 4; 
+            MaxEXP += 4;
         }
-        UIManager.Instance.UIMainMenu.SetCharacterInfo(); // UI 업데이트
+        UIManager.Instance.UIMainMenu.SetCharacterInfo();
     }
 
-    private void LevelUp() 
+    private void LevelUp()
     {
         Level++;
-        ATK += 2; 
+        ATK += 2;
         DEF += 1;
-        HP += 10;        
-        UIManager.Instance.UIStatus.RefreshUI(); // UI 업데이트
+        HP += 10;
+        UIManager.Instance.UIStatus.RefreshUI();
         UIManager.Instance.UIMainMenu.SetCharacterInfo();
     }
 }

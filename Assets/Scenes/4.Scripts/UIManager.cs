@@ -5,14 +5,10 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
-
-    [SerializeField] private UIMainMenu uiMainMenu;
-    [SerializeField] private UIStatus uiStatus;
-    [SerializeField] private UIInventory uiInventory;
-
-    public UIMainMenu UIMainMenu => uiMainMenu;
-    public UIStatus UIStatus => uiStatus;
-    public UIInventory UIInventory => uiInventory;
+    public Inventory inventory;
+    public UIInventory UIInventory;
+    public UIStatus UIStatus; 
+    public UIMainMenu UIMainMenu; 
 
     private void Awake()
     {
@@ -23,7 +19,6 @@ public class UIManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 씬 전환 시 유지
         }
     }
 }
